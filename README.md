@@ -8,7 +8,7 @@ from Fatec Americana, and will be used to assess Flutter skills.
 
 Just clone the project and run it on your device, and you'll play the classic tic-tac-toe.
 
-![alt text](https://github.com/rafael-torraca/tic-tac-toe-flutter/blob/main/app.png.jpg?raw=true)
+![alt text](https://github.com/rafael-torraca/tic-tac-toe-flutter/blob/main/app.png?raw=true)
 
 ## MIT License
 

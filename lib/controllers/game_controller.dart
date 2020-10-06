@@ -1,7 +1,11 @@
 import 'package:tictactoe/core/constants.dart';
+import 'package:tictactoe/core/winner_rules.dart';
 import 'package:tictactoe/enums/player_type.dart';
 import 'package:tictactoe/enums/winner_type.dart';
 import 'package:tictactoe/models/game_tile.dart';
+
+import '../core/constants.dart';
+import '../enums/player_type.dart';
 
 class GameController {
   List<GameTile> tiles = [];
@@ -18,6 +22,7 @@ class GameController {
   bool get hasMoves =>
       (movesPlayer1.length + movesPlayer2.length) != BOARD_SIZE;
 
+  bool get isBotTurn => isSinglePlayer && currentPlayer == PlayerType.player2;
   GameController() {
     initialize();
   }
@@ -50,32 +55,24 @@ class GameController {
   }
 
   bool checkPlayerWinner(List<int> moves) {
-    // Check rows
-    if (moves.contains(1) && moves.contains(2) && moves.contains(3))
-      return true;
-    if (moves.contains(4) && moves.contains(5) && moves.contains(6))
-      return true;
-    if (moves.contains(7) && moves.contains(8) && moves.contains(9))
-      return true;
-    // Check columns
-    if (moves.contains(1) && moves.contains(4) && moves.contains(7))
-      return true;
-    if (moves.contains(2) && moves.contains(5) && moves.contains(8))
-      return true;
-    if (moves.contains(3) && moves.contains(6) && moves.contains(9))
-      return true;
-    // Check diagonals
-    if (moves.contains(1) && moves.contains(5) && moves.contains(9))
-      return true;
-    if (moves.contains(3) && moves.contains(5) && moves.contains(6))
-      return true;
-
-    return false;
+    return winnerRules.any((rule) =>
+        moves.contains(rule[0]) &&
+        moves.contains(rule[1]) &&
+        moves.contains(rule[2]));
   }
 
   WinnerType checkWinner() {
     if (checkPlayerWinner(movesPlayer1)) return WinnerType.player1;
     if (checkPlayerWinner(movesPlayer2)) return WinnerType.player2;
     return WinnerType.none;
+  }
+
+  int automaticMove() {
+    var moves = new List<int>.generate(BOARD_SIZE, (index) => index + 1);
+    moves.removeWhere((element) => movesPlayer1.contains(element));
+    moves.removeWhere((element) => movesPlayer2.contains(element));
+
+    moves.shuffle();
+    return moves[0];
   }
 }

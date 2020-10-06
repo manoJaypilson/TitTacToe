@@ -5,6 +5,8 @@ import 'package:tictactoe/dialogs/custom_dialog.dart';
 import 'package:tictactoe/enums/winner_type.dart';
 import 'package:tictactoe/models/game_tile.dart';
 
+import '../core/constants.dart';
+
 class GamePage extends StatefulWidget {
   @override
   _GamePageState createState() => _GamePageState();
@@ -25,6 +27,7 @@ class _GamePageState extends State<GamePage> {
     return AppBar(
       title: Text(GAME_TITLE),
       centerTitle: true,
+      actions: [IconButton(icon: Icon(Icons.share), onPressed: () {})],
     );
   }
 
@@ -108,12 +111,20 @@ class _GamePageState extends State<GamePage> {
     if (winner == WinnerType.none) {
       if (!_controller.hasMoves) {
         _showTiedDialog();
+      } else if (_controller.isBotTurn) {
+        _onMarkTileByBot();
       }
     } else {
       String symbol =
           winner == WinnerType.player1 ? PLAYER1_SYMBOL : PLAYER2_SYMBOL;
       _showWinnerDialog(symbol);
     }
+  }
+
+  _onMarkTileByBot() {
+    final id = _controller.automaticMove();
+    final tile = _controller.tiles.firstWhere((element) => element.id == id);
+    _onMarkTile(tile);
   }
 
   _showWinnerDialog(String symbol) {
@@ -145,6 +156,16 @@ class _GamePageState extends State<GamePage> {
   }
 
   _buildPlayerMode() {
-    return Container();
+    return SwitchListTile(
+      title: Text(
+          _controller.isSinglePlayer ? SINGLE_PLAYER_MODE : MULTIPLAYER_MODE),
+      secondary: Icon(_controller.isSinglePlayer ? Icons.person : Icons.group),
+      value: _controller.isSinglePlayer,
+      onChanged: (value) {
+        setState(() {
+          _controller.isSinglePlayer = value;
+        });
+      },
+    );
   }
 }

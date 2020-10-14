@@ -12,11 +12,20 @@ Just clone the project and run it on your device, and you'll play the classic ti
 
 ## Desafio da Aula
 
-[x] Exibir o jogador da vez (Turno do X ou Turno do Y); Pode usar um Text para isso.
-[ ] Criar um placar de vitórias para cada jogador; Pode usar Text também
-[ ] Criar uma splash screen para o aplicativo; Utilize o plugin custom_splash.
-[ ] Adicionar um botão para compartilhar o aplicativo. Utilize o plugin Share.
-[ ] Trocar o X e Y por duas imagens (exemplo: Finn e Jake de Adventure Time) — como utilizar imagens. Entendendo como colocar imagens em um Container.
+- [ ] Exibir o jogador da vez (Turno do X ou Turno do O); Pode usar um Text para isso.
+- [ ] Criar um placar de vitórias para cada jogador; Pode usar Text também
+- [ ] Criar uma splash screen para o aplicativo; Utilize o [plugin custom_splash](https://pub.dev/packages/custom_splash).
+- [ ] Adicionar um botão para compartilhar o aplicativo. Utilize o [plugin Share](https://pub.dev/packages/share).
+- [ ] Trocar o X e O por duas imagens (exemplo: Finn e Jake de Adventure Time) — como [utilizar imagens](https://flutter.dev/docs/development/ui/assets-and-images). Entendendo como colocar [imagens em um Container](https://medium.com/flutteropen/flutter-widgets-03-image-558e2b24059e).
+
+## Bonus
+
+- [x] Timer para o bot jogar;
+
+
+## Issues Detected
+
+- [ ] Quando jogando contra o computador, devido ao timer colocado, é possível marcar para o computador;
 
 ## MIT License
 

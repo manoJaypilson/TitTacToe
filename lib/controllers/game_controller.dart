@@ -39,6 +39,13 @@ class GameController {
     // }
   }
 
+  String isCurrentPlayerTurn() {
+    if (currentPlayer == PlayerType.player1) {
+      return PLAYER1_SYMBOL;
+    }
+    return PLAYER2_SYMBOL;
+  }
+
   void mark(GameTile tile) {
     if (currentPlayer == PlayerType.player1) {
       tile.symbol = PLAYER1_SYMBOL;

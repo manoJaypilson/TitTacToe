@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tictactoe/controllers/game_controller.dart';
 import 'package:tictactoe/core/constants.dart';
@@ -37,6 +39,7 @@ class _GamePageState extends State<GamePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _buildIsCurrentPlayerTurnText(),
           _buildBoard(),
           _buildPlayerMode(),
           _buildResetButton(),
@@ -45,11 +48,13 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
-  _buildResetButton() {
-    return RaisedButton(
-      padding: const EdgeInsets.all(20),
-      child: Text(RESET_BUTTON_LABEL),
-      onPressed: _onResetGame,
+  _buildIsCurrentPlayerTurnText() {
+    return Container(
+      child: Center(
+        child: Text(
+          "Turno do Jogador: " + _controller.isCurrentPlayerTurn(),
+        ),
+      ),
     );
   }
 
@@ -69,6 +74,14 @@ class _GamePageState extends State<GamePage> {
           return _buildTile(tile);
         },
       ),
+    );
+  }
+
+  _buildResetButton() {
+    return RaisedButton(
+      padding: const EdgeInsets.all(20),
+      child: Text(RESET_BUTTON_LABEL),
+      onPressed: _onResetGame,
     );
   }
 
@@ -112,7 +125,9 @@ class _GamePageState extends State<GamePage> {
       if (!_controller.hasMoves) {
         _showTiedDialog();
       } else if (_controller.isBotTurn) {
-        _onMarkTileByBot();
+        Timer(Duration(seconds: 1), () {
+          _onMarkTileByBot();
+        });
       }
     } else {
       String symbol =

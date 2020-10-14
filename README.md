@@ -10,6 +10,14 @@ Just clone the project and run it on your device, and you'll play the classic ti
 
 ![alt text](https://github.com/rafael-torraca/tictactoe-flutter/blob/main/app.png?raw=true)
 
+## Desafio da Aula
+
+[x] Exibir o jogador da vez (Turno do X ou Turno do Y); Pode usar um Text para isso.
+[ ] Criar um placar de vitórias para cada jogador; Pode usar Text também
+[ ] Criar uma splash screen para o aplicativo; Utilize o plugin custom_splash.
+[ ] Adicionar um botão para compartilhar o aplicativo. Utilize o plugin Share.
+[ ] Trocar o X e Y por duas imagens (exemplo: Finn e Jake de Adventure Time) — como utilizar imagens. Entendendo como colocar imagens em um Container.
+
 ## MIT License
 
 Copyright (c) 2020 Rafael Torraca

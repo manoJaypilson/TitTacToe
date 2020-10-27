@@ -69,8 +69,12 @@ class GameController {
   }
 
   WinnerType checkWinner() {
-    if (checkPlayerWinner(movesPlayer1)) return WinnerType.player1;
-    if (checkPlayerWinner(movesPlayer2)) return WinnerType.player2;
+    if (checkPlayerWinner(movesPlayer1)) {
+      return WinnerType.player1;
+    }
+    if (checkPlayerWinner(movesPlayer2)) {
+      return WinnerType.player2;
+    }
     return WinnerType.none;
   }
 

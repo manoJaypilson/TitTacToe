@@ -15,3 +15,4 @@ const String DIALOG_MESSAGE = 'Press the reset button to start again!';
 const String SINGLE_PLAYER_MODE = 'Single Player';
 const String MULTIPLAYER_MODE = 'Two Players';
 const String RESET_BUTTON_LABEL = 'RESET';
+const String Show_History = 'Placar até aqui...';
